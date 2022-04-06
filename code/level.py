@@ -1,6 +1,7 @@
 import pygame
 from tiles import Tile
 from settings import tile_size
+from player import Player
 
 
 class Level:
@@ -14,13 +15,20 @@ class Level:
 
     def setup_level(self, layout):
         self.tiles = pygame.sprite.Group()
+        self.player = pygame.sprite.GroupSingle()
+
         for row_index, row in enumerate(layout):
             for col_index, col in enumerate(row):
+                x = tile_size * col_index
+                y = tile_size * row_index
                 if col == "X":
-                    x = tile_size * col_index
-                    y = tile_size * row_index
                     tile = Tile((x, y), tile_size)
                     self.tiles.add(tile)
+                if col == "P":                    
+                    player_sprite = Player((x, y))
+                    self.player.add(player_sprite)
+
+
 
     def run(self):
         self.tiles.update(0)

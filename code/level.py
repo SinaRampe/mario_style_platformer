@@ -18,9 +18,10 @@ class Level:
         self.player = pygame.sprite.GroupSingle()
 
         for row_index, row in enumerate(layout):
-            for col_index, col in enumerate(row):
+              for col_index, col in enumerate(row):
                 x = tile_size * col_index
                 y = tile_size * row_index
+                
                 if col == "X":
                     tile = Tile((x, y), tile_size)
                     self.tiles.add(tile)
@@ -31,5 +32,10 @@ class Level:
 
 
     def run(self):
+
+        # level tiles
         self.tiles.update(0)
         self.tiles.draw(self.display_surface)
+
+        # player
+        self.player.draw(self.display_surface)

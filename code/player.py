@@ -28,7 +28,7 @@ class Player(pygame.sprite.Sprite):
             self.animations[animation] = import_folder(full_path)
 
     def animate(self):
-        animation = self.animations["run"]
+        animation = self.animations[self.status]
 
         self.frame_index += self.animation_speed
         if self.frame_index >= len(animation):
@@ -69,6 +69,7 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.get_input()
+        self.get_status()
         self.animate()
         
 
